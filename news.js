@@ -5,15 +5,25 @@ var recherche_courante_news=[]; // tableau d'objets de type resultats (avec titr
 function ajouter_recherche()
 {
 
+value = $("#zone_saisie").val()
+res = recherches.indexOf(value);
+if (res == -1){
+	recherches.push(value)
+	var p = document.createElement("p");
+	p.setAttribute("class","titre-recherches")
+	var l = document.createElement("label");
+	l.setAttribute("onclick","selectionner_recherche(this)")
+	var i = document.createElement("img")
+	i.setAttribute("src","croix30.jpg")
+	i.setAttribute("class","icone-croix")
+	i.setAttribute("onclick","supprimer_recherche(this)")
+	l.innerHTML = value
+	p.appendChild(l)
+	p.appendChild(i)
+	divi = ($("#recherches-stockees"))
+	divi.append(p)
+}
 
-	var stringJson = '{"recherches":[';
-	for (i = 0; i < recherches.length-1; i++) {
-		// Parcours toute les recherches
-		var stringJson = stringJson+'{"recherche":'+'"'+recherches[i]+'"},';
-	}
-	var stringJson = stringJson+'{"recherche":'+'"'+recherches[recherches.length-1]+'"}';
-	var stringJson = stringJson+"]}";
-  $.cookie("recherches", stringJson, { expires: 7 });
 
 }
 
@@ -21,12 +31,19 @@ function ajouter_recherche()
 function supprimer_recherche(e)
 {
 
+	res = recherches.indexOf(e.value)
+	recherches.splice(res, 1)
+	e.closest("p").remove()
 
 }
 
 
 function selectionner_recherche(e)
 {
+
+	meh = e.textContent
+	$("#zone_saisie").val(meh)
+	recherche_courante = meh
 
 }
 
@@ -41,6 +58,7 @@ function init()
 
 function rechercher_nouvelles()
 {
+
 	$("#resultats").empty();
 
 /*
@@ -61,6 +79,7 @@ $.get('search.php?data='+s,maj_resultats);
 
 function maj_resultats(res)
 {
+
 		//alert(res);
 		obj = JSON.parse(res);
 
@@ -72,6 +91,7 @@ function maj_resultats(res)
 	console.log(JSON.stringify(res));
 	alert(JSON.stringify(res));
 	$("#resultats").html()*/
+
 }
 
 
