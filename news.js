@@ -9,44 +9,28 @@ function ajouter_recherche()
 	res = recherches.indexOf(value);
 	if (res == -1){
 		aj_recherche(value);
-
 	}
 }
 
 function aj_recherche(value){
 	recherches.push(value)
-	var p = document.createElement("p");
-	p.setAttribute("class","titre-recherches");
-	var l = document.createElement("label");
-	l.setAttribute("onclick","selectionner_recherche(this)");
-	var i = document.createElement("img");
-	i.setAttribute("src","croix30.jpg");
-	i.setAttribute("class","icone-croix");
-	i.setAttribute("onclick","supprimer_recherche(this)");
-	l.innerHTML = value;
-	p.appendChild(l);
-	p.appendChild(i);
-	divi = ($("#recherches-stockees"));
-	divi.append(p);
+	$("#recherches-stockees").append('<p class="titre-recherche" onclick="selectionner_recherche(this)" ><label>'+value+'</label><img src="croix30.jpg" class="icone-croix" onclick="supprimer_recherche(this)"/> </p>');
 	$.cookie("recherches", JSON.stringify(recherches), { expires: 7 });
 }
 
 
 function supprimer_recherche(e)
 {
-
 	res = recherches.indexOf(e.value);
 	recherches.splice(res, 1);
 	e.closest("p").remove();
 	$.cookie("recherches", JSON.stringify(recherches), { expires: 7 });
-
 }
-
 
 function selectionner_recherche(e)
 {
 	$("#resultats").empty();
-	meh = e.textContent;
+	meh = e.firstChild.textContent;
 	$("#zone_saisie").val(meh);
 	recherche_courante = meh;
 	recherche_courante_news = JSON.parse($.cookie(meh));
