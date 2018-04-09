@@ -19,6 +19,8 @@
 		</div>
 		<h3 class="titre">nouvelle recherche</h3>
 
+
+
 		<div id="nouvelle-recherche">
 			<div class = "ui-widget">
 			<input  type="text" name="zone_saisie" id="zone_saisie" onKeyPress="if (event.keyCode == 13) controler.rechercher_nouvelles()"/>
@@ -27,6 +29,20 @@
 			<BR/>
 			<input class="ui button" type="button" value="OK" onclick="controler.rechercher_nouvelles()"/>
 		</div>
+		
+		<!-- <div id="nouvelle-recherche">
+			<div class = "ui-widget">
+				<div class="ui action left icon input">
+				  <i class="search icon"></i>
+					<div class = "ui-widget">
+					<input placeholder="Search..." type="text" name="zone_saisie" id="zone_saisie" onKeyPress="if (event.keyCode == 13) controler.rechercher_nouvelles()">
+					</div>
+				</div>
+				<input class="ui button" type="button" value="OK" onclick="controler.rechercher_nouvelles()"/>
+			</div>
+			<img class="icone-disk" src="disk30.jpg" onclick="model.ajouter_recherche()" />
+			<BR/>
+		</div> -->
 
 	</div>
 	<div id="zone-centrale">
